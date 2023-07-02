@@ -15,7 +15,7 @@ func main() {
 	publicationName := "outbox_pub"
 	e := &events.EventSubscription{
 		Opts: &events.EventSubscriptionOptions{
-			ConnStr:         os.Getenv("PGLOGREPL_DEMO_CONN_STRING"),
+			ConnStr:         os.Getenv("OUTBOX_DEMO_CONN_STRING"),
 			SlotName:        slotName,
 			PublicationName: publicationName,
 		},
