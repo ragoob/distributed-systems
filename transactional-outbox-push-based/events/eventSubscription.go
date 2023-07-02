@@ -39,7 +39,7 @@ func (e *EventSubscription) Subscribe(ctx context.Context) <-chan Event {
 	}
 
 	standbyMessageTimeout := time.Second * 10
-	walOpt := &WalOption{
+	walOpts := &WalOption{
 		clientXLogPos:              sysident.XLogPos,
 		standbyMessageTimeout:      standbyMessageTimeout,
 		nextStandbyMessageDeadline: time.Now().Add(standbyMessageTimeout),
@@ -48,7 +48,7 @@ func (e *EventSubscription) Subscribe(ctx context.Context) <-chan Event {
 		inStream:                   false,
 	}
 
-	go e.startWatch(ctx, walOpt, conn, eventChan)
+	go e.startWatch(ctx, walOpts, conn, eventChan)
 
 	return eventChan
 }
