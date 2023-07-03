@@ -161,14 +161,14 @@ func process(walData []byte, walOpts *WalOption, eventChan chan<- Event) {
 
 		fmt.Println(logicalMsg.Tuple.Columns)
 		e := Event{
-			Data: string(parseTuble(logicalMsg, rel, walOpts)),
+			Data: string(parseLog(logicalMsg, rel, walOpts)),
 		}
 
 		eventChan <- e
 	}
 }
 
-func parseTuble(logicalMsg *pglogrepl.InsertMessageV2, rel *pglogrepl.RelationMessageV2, opt *WalOption) []byte {
+func parseLog(logicalMsg *pglogrepl.InsertMessageV2, rel *pglogrepl.RelationMessageV2, opt *WalOption) []byte {
 	for idx, col := range logicalMsg.Tuple.Columns {
 		colName := rel.Columns[idx].Name
 
