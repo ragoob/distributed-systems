@@ -4,7 +4,7 @@ How to atomically update the database and send messages to a message broker?
 ## Solution
 The solution is for the service that sends the message to first store the message in the database as part of the transaction that updates the business entities. A separate process or thread watch transactional WAL data (database write ahead log) with logical replication and send the message to the message broker then Send Stand by Status Update to flush the WAL after message successfuly sent to MQ
 
-## Technolgies
+## Technologies
  Postgres db 
 
 ## Drawbacks
